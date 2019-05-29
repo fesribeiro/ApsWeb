@@ -1,0 +1,12 @@
+body {
+	background-color: #bbbbbbe0; 
+}
+
+.table-veiculos {
+	background-color: white;
+	border-radius: 15px;
+}
+
+.data-veiculos{
+	padding: 15px
+}

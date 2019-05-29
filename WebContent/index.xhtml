@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Revenda de Veiculos</title>
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+	<h:outputStylesheet name="/css/style.css" />
+</h:head>
+<h:body>
+
+
+<h:panelGroup layout="block" class="container">
+	<h:form>
+		<h:dataTable binding="#{table}" value="#{veiculo.veiculosList()}" var="veiculo"
+				class="table table-veiculos">
+					<h:column>
+						<f:facet name="header">ID</f:facet>
+						<h:outputText value="#{table.rowIndex + 1}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputText value="#{veiculo.nome}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cor</f:facet>
+						<h:outputText value="#{veiculo.cor}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Marca</f:facet>
+						<h:outputText value="#{veiculo.marca}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Alugado por ?</f:facet>
+						<h:outputText value="#{veiculo.nomeUsuarioCarro}" />
+					</h:column>
+			</h:dataTable>
+		<h:commandButton value="teste" action="#{veiculo.teste()}"/>
+	</h:form>
+</h:panelGroup>
+</h:body>
+</html>
