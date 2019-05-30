@@ -5,6 +5,8 @@ body {
 .table-veiculos {
 	background-color: white;
 	border-radius: 15px;
+	box-shadow: 0 5px 20px black;
+	padding: 15px;
 }
 
 .data-veiculos{

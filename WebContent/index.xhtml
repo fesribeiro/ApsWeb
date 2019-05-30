@@ -35,8 +35,22 @@
 						<f:facet name="header">Alugado por ?</f:facet>
 						<h:outputText value="#{veiculo.nomeUsuarioCarro}" />
 					</h:column>
+					<h:column>
+						<f:facet name="header">Alugar Veiculo</f:facet>
+						<h:commandButton 
+						value="#{veiculo.nomeUsuarioCarro == 'Veiculo Disponivel' ? 'Alugar' : 'Já alugado'}"
+						disabled="#{veiculo.nomeUsuarioCarro == 'Veiculo Disponivel' ? 'False' : 'True'}"	
+						class="btn btn-#{veiculo.nomeUsuarioCarro == 'Veiculo Disponivel' ? 'success' : 'Danger'}"			
+						/> 	
+					</h:column>
+					<h:column>
+						<f:facet name="header">Ações</f:facet>
+						<h:commandButton value="Alterar" action="#{veiculo.teste()}" class="btn btn-warning"/>
+						&nbsp
+						<h:commandButton value="Remover" action="#{veiculo.teste()}" class="btn btn-danger"/>				
+					</h:column>
 			</h:dataTable>
-		<h:commandButton value="teste" action="#{veiculo.teste()}"/>
+		
 	</h:form>
 </h:panelGroup>
 </h:body>

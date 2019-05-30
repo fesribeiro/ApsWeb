@@ -88,6 +88,11 @@ public class Veiculo {
 		return this.nomeUsuarioCarro;		
 	}
 	
+	public void alugarVeiculo() {
+		
+	}
+	
+	
 	public ArrayList veiculosList(){
 		try {
 			veiculos = new ArrayList();
