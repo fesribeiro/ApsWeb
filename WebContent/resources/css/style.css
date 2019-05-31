@@ -12,3 +12,9 @@ body {
 .data-veiculos{
 	padding: 15px
 }
+
+.user-helper{
+	opacity: 0.5;
+	color: gren;
+	margin-bottom: 60px; 
+}
