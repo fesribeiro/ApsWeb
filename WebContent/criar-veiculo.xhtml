@@ -32,22 +32,9 @@
 							<h:outputLabel clas="form-control" for="cor-veiculo" value="Cor" />
 							<h:inputText class="form-control" id="cor-veiculo" value="#{veiculo.cor}" />
 						</h:panelGroup>
-					</h:panelGroup>
+					</h:panelGroup>		
 					<h:panelGroup layout="block" class="col-md-5">
-						<h:panelGroup layout="block" class="form-group">
-						<h:outputLabel clas="form-control" for="usuario" value="Selecione o usuario" />
-							<h:selectOneMenu  value="#{user.id}" id="usuario" class="form-control">
-								<f:selectItems 
-								value="#{user.usersList()}" 
-								var="user" itemValue="#{user.id}"  
-								itemLabel="#{user.nome}" 
-								/>						
-							</h:selectOneMenu>
-						</h:panelGroup>
-						<h:outputText  class="user-helper" value="Caso não encontre o usuário favor cadastrar"/>
-					</h:panelGroup>				
-					<h:panelGroup layout="block" class="col-md-5">
-						<h:commandButton value="Alugar" action="#{veiculo.alugarVeiculo(veiculo.id, user.id)}" class="btn btn-success"/>
+						<h:commandButton value="Criar" action="#{veiculo.criarVeiculo()}" class="btn btn-success"/>
 					</h:panelGroup>
 			</h:panelGroup>
 	</h:form>

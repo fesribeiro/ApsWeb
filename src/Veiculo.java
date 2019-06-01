@@ -153,6 +153,36 @@ public class Veiculo {
 		
 	}
 	
+	public String criarVeiculo()
+	{
+		try {
+			conn = getDb();
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO veiculos (nome, cor, marca) VALUES (?,?,?)");
+			stmt.setString(1, nome);
+			stmt.setString(2, marca);
+			stmt.setString(3, cor);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return "index.xhtml?faces-redirect=true";
+	}
+	
+	
+	public void removerVeiculo(int id)
+	{
+		try {
+			conn = getDb();
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM veiculos where id = " + id);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+	}
+	
+	
 	public String alugarVeiculo(Veiculo edit, User user)
 	{
 		try {
