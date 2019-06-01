@@ -18,7 +18,8 @@ public class Veiculo {
 	String cor;
 	String marca;
 	ArrayList veiculos;
-//	private Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+	ArrayList veiculosNaoAlugados;
+	private Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 	Connection conn;
 	
 	public int getId() {
@@ -74,43 +75,19 @@ public class Veiculo {
 		return conn;
 	}	
 	
-	public String getUsuarioLocado(int id) {
-		try {
-			conn = getDb();		
-			Statement stmt = getDb().createStatement();
-			ResultSet result = stmt.executeQuery("select nome from clientes where id = " + id);
-			while(result.next()) {				
-				this.setNomeUsuarioCarro(result.getString("nome"));
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return this.nomeUsuarioCarro;		
-	}
-	
-	public void alugarVeiculo() {
-		
-	}
-	
-	
 	public ArrayList veiculosList(){
 		try {
 			veiculos = new ArrayList();
 			conn = getDb();		
 			Statement stmt = getDb().createStatement();
-			ResultSet result = stmt.executeQuery("select * from veiculos");
+			ResultSet result = stmt.executeQuery("SELECT v.*, c.nome as nomeCliente FROM veiculos as v inner join clientes as c on v.alugado_id = c.id;");
 			while (result.next()){
 				Veiculo veiculo = new Veiculo();
 				veiculo.setId(result.getInt("id"));
 				veiculo.setNome(result.getString("nome"));
 				veiculo.setMarca(result.getString("marca"));
 				veiculo.setCor(result.getString("cor"));
-				if(result.getInt("alugado_id") != 999)
-				{
-					veiculo.setNomeUsuarioCarro(this.getUsuarioLocado(result.getInt("alugado_id")));					
-				} else {
-					veiculo.setNomeUsuarioCarro("Veiculo Disponivel");
-				}
+				veiculo.setNomeUsuarioCarro(result.getString("nomeCliente"));					
 				veiculos.add(veiculo);
 			}
 			conn.close();
@@ -121,5 +98,76 @@ public class Veiculo {
 		
 	}
 	
+	public ArrayList veiculosAlugadosList(){
+		try {
+			veiculosNaoAlugados = new ArrayList();
+			conn = getDb();		
+			Statement stmt = getDb().createStatement();
+			ResultSet result = stmt.executeQuery("SELECT * from veiculos where alugado_id is null;");
+			while (result.next()){
+				Veiculo veiculo = new Veiculo();
+				veiculo.setId(result.getInt("id"));
+				veiculo.setNome(result.getString("nome"));
+				veiculo.setMarca(result.getString("marca"));
+				veiculo.setCor(result.getString("cor"));			
+				veiculosNaoAlugados.add(veiculo);
+			}
+			conn.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return veiculosNaoAlugados;
+		
+	}
+	
+	public void removerLocacao(int id) {
+		try {
+			conn = getDb();
+			PreparedStatement stmt = conn.prepareStatement("UPDATE veiculos SET alugado_id = null where id = " + id);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	public String editarVeiculo(int id)
+	{
+		Veiculo veiculo = null;
+		try {
+			conn = getDb();
+			Statement stmt = getDb().createStatement();
+			ResultSet result = stmt.executeQuery("select * from veiculos where id = " + id);
+			result.next();
+			veiculo = new Veiculo();
+			veiculo.setId(result.getInt("id"));
+			veiculo.setNome(result.getString("nome"));
+			veiculo.setMarca(result.getString("marca"));
+			veiculo.setCor(result.getString("cor"));
+			sessionMap.put("edit", veiculo);
+			conn.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return "/alugarVeiculo.xhtml?faces-redirect=true";
+		
+	}
+	
+	public String alugarVeiculo(Veiculo edit, User user)
+	{
+		try {
+			conn = getDb();
+			PreparedStatement stmt = conn.prepareStatement("UPDATE veiculos SET alugado_id=? where id=?");
+			stmt.setInt(1, user.id);
+			stmt.setInt(2, edit.id);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return "index.xhtml?faces-redirect=true";
+		
+		
+	}
 	
 }

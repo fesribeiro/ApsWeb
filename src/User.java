@@ -77,7 +77,7 @@ public class User {
 			ResultSet result = stmt.executeQuery("select * from clientes");
 			while (result.next()){
 			User usuario = new User();
-				if(result.getInt("id") != 999) {				
+				if(result.getInt("id") != 0) {				
 					usuario.setId(result.getInt("id"));
 					usuario.setNome(result.getString("nome"));					
 					usuarios.add(usuario);
