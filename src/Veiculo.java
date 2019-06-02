@@ -174,7 +174,7 @@ public class Veiculo {
 			System.out.println(e);
 		}
 		
-		return "/comprar-veiculo.xhtml?faces-redirect=true";
+		return "comprar-veiculo.xhtml?faces-redirect=true";
 		
 	}
 	
@@ -199,7 +199,7 @@ public class Veiculo {
 			System.out.println(e);
 		}
 		
-		return "/editar-veiculo.xhtml?faces-redirect=true";
+		return "/ApsWeb/faces/veiculos/editar-veiculo.xhtml?faces-redirect=true";
 		
 	}
 	

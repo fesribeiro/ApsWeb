@@ -181,7 +181,7 @@ public class User {
 			System.out.println(e);
 		}
 		
-		return "/editar-usuario.xhtml?faces-redirect=true";
+		return "editar-usuario.xhtml?faces-redirect=true";
 		
 	}
 	
