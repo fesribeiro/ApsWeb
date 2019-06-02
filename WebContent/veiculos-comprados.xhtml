@@ -16,47 +16,47 @@
 <ui:composition template="/WEB-INF/template.xhtml">
 	<ui:define name="page">
 		<h:panelGroup layout="block" class="container">
-		<h1>Veiculos</h1>
-				<h:form>
-				<h:dataTable binding="#{tabelaVeiculosLivres}" value="#{veiculo.veiculoLivresList()}" var="veiculoLivre"
+		<h1>Veiculos Comprados</h1>
+			<h:form>
+				<h:dataTable binding="#{tabelaVeiculosComprados}" value="#{veiculo.veiculoCompradosList()}" var="veiculo"
 						class="table table-veiculos">
 							<h:column>
 								<f:facet name="header">ID</f:facet>
-								<h:outputText value="#{veiculoLivre.id}" />
+								<h:outputText value="#{veiculo.id}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Nome</f:facet>
-								<h:outputText value="#{veiculoLivre.nome}" />
+								<h:outputText value="#{veiculo.nome}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Cor</f:facet>
-								<h:outputText value="#{veiculoLivre.cor}" />
+								<h:outputText value="#{veiculo.cor}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Marca</f:facet>
-								<h:outputText value="#{veiculoLivre.marca}" />
+								<h:outputText value="#{veiculo.marca}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Ano</f:facet>
-								<h:outputText value="#{veiculoLivre.ano}" />
+								<h:outputText value="#{veiculo.ano}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Preço R$ </f:facet>
-								<h:outputText value="#{veiculoLivre.preco}" />
+								<h:outputText value="#{veiculo.preco}" />
 							</h:column>
 							<h:column>
-								<f:facet name="header">Realizar compra</f:facet>
-								<h:commandButton value="Comprar" class="btn btn-success" action="#{veiculo.comprarVeiculo(veiculoLivre.id)}"/> 	
+								<f:facet name="header">Comprado por:</f:facet>
+								<h:outputText value="#{veiculo.nomeUsuarioCarro}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Ações</f:facet>
-								<h:commandButton value="Alterar" action="#{veiculo.alterarVeiculo(veiculoLivre.id)}" class="btn btn-warning"/>
 								&nbsp;
-								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o veiculo #{veiculoLivre.nome}')" action="#{veiculo.removerVeiculo(veiculoLivre.id)}" class="btn btn-danger"/>				
+								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o veiculo #{veiculo.nome}')" 
+								action="#{veiculo.removerLocacao(veiculo.id)}" class="btn btn-danger"/>				
 							</h:column>
 					</h:dataTable>
-			</h:form>
-		</h:panelGroup>
+				</h:form>
+			</h:panelGroup>
 	</ui:define>
 </ui:composition>
 </h:body>

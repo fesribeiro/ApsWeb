@@ -41,6 +41,12 @@
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="col-md-5">
 						<h:panelGroup layout="block" class="form-group">
+							<h:outputLabel clas="form-control" for="preco-veiculo" value="Preço" />
+							<h:inputText class="form-control" id="preco-veiculo" disabled="true" value="#{edit.preco}" />
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="col-md-5">
+						<h:panelGroup layout="block" class="form-group">
 						<h:outputLabel clas="form-control" for="usuario" value="Selecione o usuario" />
 							<h:selectOneMenu  value="#{user.id}" id="usuario" class="form-control">
 								<f:selectItems 
@@ -55,7 +61,7 @@
 			</h:panelGroup>
 				<h:panelGroup layout="block" class="col-md-5">
 					<h:panelGroup layout="block" class="form-group">
-						<h:commandButton value="Alugar" action="#{veiculo.alugarVeiculo(edit, user)}" class="btn btn-success"/>
+						<h:commandButton value="Comprar" action="#{veiculo.comprarVeiculo(edit, user)}" class="btn btn-success"/>
 					</h:panelGroup>
 				</h:panelGroup>
 	</h:form>

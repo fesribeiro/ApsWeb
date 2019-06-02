@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 public class Veiculo {
 	int id;
 	String ano;
+	String preco;
 	String nomeUsuarioCarro;
 	String fabricante;
 	String nome;
@@ -22,6 +23,14 @@ public class Veiculo {
 	ArrayList veiculosNaoAlugados;
 	private Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 	Connection conn;
+	
+	public String getPreco() {
+		return preco;
+	}
+	
+	public void setPreco(String preco) {
+		this.preco = preco;
+	}
 	
 	public String getAno() {
 		return ano;
@@ -84,7 +93,7 @@ public class Veiculo {
 		return conn;
 	}	
 	
-	public ArrayList veiculosList(){
+	public ArrayList veiculoCompradosList(){
 		try {
 			veiculos = new ArrayList();
 			conn = getDb();		
@@ -97,6 +106,7 @@ public class Veiculo {
 				veiculo.setMarca(result.getString("marca"));
 				veiculo.setCor(result.getString("cor"));
 				veiculo.setAno(result.getString("ano"));
+				veiculo.setPreco(result.getString("preco"));
 				veiculo.setNomeUsuarioCarro(result.getString("nomeCliente"));					
 				veiculos.add(veiculo);
 			}
@@ -108,7 +118,7 @@ public class Veiculo {
 		
 	}
 	
-	public ArrayList veiculosAlugadosList(){
+	public ArrayList veiculoLivresList(){
 		try {
 			veiculosNaoAlugados = new ArrayList();
 			conn = getDb();		
@@ -121,6 +131,7 @@ public class Veiculo {
 				veiculo.setMarca(result.getString("marca"));
 				veiculo.setCor(result.getString("cor"));
 				veiculo.setAno(result.getString("ano"));
+				veiculo.setPreco(result.getString("preco"));
 				veiculosNaoAlugados.add(veiculo);
 			}
 			conn.close();
@@ -142,7 +153,7 @@ public class Veiculo {
 		}
 	}
 
-	public String editarVeiculo(int id)
+	public String comprarVeiculo(int id)
 	{
 		Veiculo veiculo = null;
 		try {
@@ -156,13 +167,14 @@ public class Veiculo {
 			veiculo.setMarca(result.getString("marca"));
 			veiculo.setCor(result.getString("cor"));
 			veiculo.setAno(result.getString("ano"));
+			veiculo.setPreco(result.getString("preco"));
 			sessionMap.put("edit", veiculo);
 			conn.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		
-		return "/alugarVeiculo.xhtml?faces-redirect=true";
+		return "/comprar-veiculo.xhtml?faces-redirect=true";
 		
 	}
 	
@@ -180,6 +192,7 @@ public class Veiculo {
 			veiculo.setMarca(result.getString("marca"));
 			veiculo.setCor(result.getString("cor"));
 			veiculo.setAno(result.getString("ano"));
+			veiculo.setPreco(result.getString("preco"));
 			sessionMap.put("edit", veiculo);
 			conn.close();
 		} catch (Exception e) {
@@ -196,18 +209,19 @@ public class Veiculo {
 	{
 		try {
 			conn = getDb();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO veiculos (nome, cor, marca, ano) VALUES (?,?,?,?)");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO veiculos (nome, cor, marca, ano, preco) VALUES (?,?,?,?,?)");
 			stmt.setString(1, nome);
 			stmt.setString(2, marca);
 			stmt.setString(3, cor);
 			stmt.setString(4, ano);
+			stmt.setString(5, preco);
 			stmt.executeUpdate();
 			conn.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		
-		return "index.xhtml?faces-redirect=true";
+		return "veiculo.xhtml?faces-redirect=true";
 	}
 	
 	
@@ -228,24 +242,25 @@ public class Veiculo {
 	{
 		try {
 			conn = getDb();
-			PreparedStatement stmt = conn.prepareStatement("UPDATE veiculos SET cor=?, marca=?, nome=?, ano=? where id=?");
+			PreparedStatement stmt = conn.prepareStatement("UPDATE veiculos SET cor=?, marca=?, nome=?, ano=?, preco=? where id=?");
 			stmt.setString(1, edit.cor);
 			stmt.setString(2, edit.marca);
 			stmt.setString(3, edit.nome);
 			stmt.setString(4, edit.ano);
-			stmt.setInt(5, edit.id);
+			stmt.setString(5, edit.preco);
+			stmt.setInt(6, edit.id);
 			stmt.executeUpdate();
 			conn.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		
-		return "index.xhtml?faces-redirect=true";
+		return "veiculos.xhtml?faces-redirect=true";
 		
 	}
 	
 	
-	public String alugarVeiculo(Veiculo edit, User user)
+	public String comprarVeiculo(Veiculo edit, User user)
 	{
 		try {
 			conn = getDb();
@@ -258,7 +273,7 @@ public class Veiculo {
 			System.out.println(e);
 		}
 		
-		return "index.xhtml?faces-redirect=true";
+		return "veiculos.xhtml?faces-redirect=true";
 		
 	}
 	
