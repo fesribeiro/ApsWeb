@@ -19,38 +19,41 @@
 							<h:panelGroup layout="block" class="col-md-5">
 								<h:panelGroup layout="block" class="form-group">
 								<h:inputHidden value="#{edit.id}" />
-									<h:outputLabel clas="form-control" for="nome-veiculo" value="Nome" />
-									<h:inputText class="form-control" id="nome-veiculo" value="#{edit.nome}" />
+									<h:outputLabel clas="form-control" for="nome-usuario" value="Nome" />
+									<h:inputText class="form-control" id="nome-usuario" value="#{edit.nome}" />
 								</h:panelGroup>
 							</h:panelGroup>
 							<h:panelGroup layout="block" class="col-md-5">
 								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="marca-veiculo" value="Marca" />
-									<h:inputText class="form-control" id="marca-veiculo" value="#{edit.marca}" />
+									<h:outputLabel clas="form-control" for="cpf-usuario" value="Cpf" />
+									<h:inputText class="form-control" id="cpf-usuario" value="#{edit.cpf}" />
 								</h:panelGroup>
 							</h:panelGroup>
 							<h:panelGroup layout="block" class="col-md-5">
 								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="cor-veiculo" value="Cor" />
-									<h:inputText class="form-control" id="cor-veiculo" value="#{edit.cor}" />
+									<h:outputLabel clas="form-control" for="telefone-usuario" value="Telefone" />
+									<h:inputText class="form-control" id="telefone-usuario" value="#{edit.telefone}" />
 								</h:panelGroup>
 							</h:panelGroup>				
 							<h:panelGroup layout="block" class="col-md-5">
 								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="ano-veiculo" value="Ano" />
-									<h:inputText class="form-control" id="ano-veiculo" value="#{edit.ano}" />
+									<h:outputLabel clas="form-control" for="endereco-usuario" value="Endereco" />
+									<h:inputText class="form-control" id="endereco-usuario" value="#{edit.endereco}" />
 								</h:panelGroup>
 							</h:panelGroup>		
 							<h:panelGroup layout="block" class="col-md-5">
 								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="preco-veiculo" value="Preco" />
-									<h:inputText class="form-control" id="preco-veiculo" value="#{edit.preco}" />
+									<h:outputLabel clas="form-control" for="cliente-sexo" value="Gênero" />
+									<h:selectOneMenu class="form-control" value="#{edit.sexo}">
+										<f:selectItem  itemValue="Masculino" />
+										<f:selectItem  itemValue="Feminino" />
+									</h:selectOneMenu>
 								</h:panelGroup>
-							</h:panelGroup>						
+							</h:panelGroup>				
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="col-md-5">
 							<h:panelGroup layout="block" class="form-group"	>
-									<h:commandButton value="Editar" action="#{veiculo.alterarDadosVeiculo(edit)}" class="btn btn-success"/>				
+									<h:commandButton value="Editar" action="#{user.alterarDadosUsuario(edit)}" class="btn btn-success"/>				
 							</h:panelGroup>
 					</h:panelGroup>
 			</h:form>

@@ -43,8 +43,10 @@
 							<h:column>
 								<f:facet name="header">Ações</f:facet>
 								&nbsp;
+								<h:commandButton value="Alterar" action="#{user.alterarUsuario(cliente.id)}" class="btn btn-warning"/>
+								&nbsp;				
 								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o cliente #{cliente.nome}')" 
-								action="#{cliente.removerLocacao(cliente.id)}" class="btn btn-danger"/>				
+								action="#{user.removerUsuario(cliente.id)}" class="btn btn-danger"/>
 							</h:column>
 				</h:dataTable>
 		</h:form>

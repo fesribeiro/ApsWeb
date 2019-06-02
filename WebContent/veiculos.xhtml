@@ -52,7 +52,8 @@
 								<f:facet name="header">Ações</f:facet>
 								<h:commandButton value="Alterar" action="#{veiculo.alterarVeiculo(veiculoLivre.id)}" class="btn btn-warning"/>
 								&nbsp;
-								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o veiculo #{veiculoLivre.nome}')" action="#{veiculo.removerVeiculo(veiculoLivre.id)}" class="btn btn-danger"/>				
+								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o veiculo #{veiculoLivre.nome}')"
+								action="#{veiculo.removerVeiculo(veiculoLivre.id)}" class="btn btn-danger"/>				
 							</h:column>
 					</h:dataTable>
 			</h:form>
