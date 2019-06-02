@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 public class User {
 	int id;
+	String endereco;
 	String nome;
 	String sexo;
 	String cpf;
@@ -19,6 +20,15 @@ public class User {
 	ArrayList usuarios;
 	Connection conn;
 
+	
+	public String getEndereco() {
+		return endereco;
+	}
+	
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -35,12 +45,12 @@ public class User {
 		this.cpf = cpf;
 	}
 	
-	public String getSexo() {
-		return sexo;
-	}
-	
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+	
+	public String getSexo() {
+		return sexo;
 	}
 	
 	public String getNome() {
@@ -69,7 +79,33 @@ public class User {
 		return conn;
 	}	
 	
+
 	public ArrayList usersList(){
+		try {
+			usuarios = new ArrayList();
+			conn = getDb();		
+			Statement stmt = getDb().createStatement();
+			ResultSet result = stmt.executeQuery("select * from clientes");
+			while (result.next()){
+			User usuario = new User();
+			usuario.setId(result.getInt("id"));
+			usuario.setNome(result.getString("nome"));
+			usuario.setTelefone(result.getString("telefone"));
+			usuario.setCpf(result.getString("cpf"));
+			usuario.setEndereco(result.getString("endereco"));
+			usuario.setSexo(result.getString("sexo"));
+			usuarios.add(usuario);
+			}
+			conn.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return usuarios;
+		
+	}
+	
+	
+	public ArrayList usersNameList(){
 		try {
 			usuarios = new ArrayList();
 			conn = getDb();		
@@ -90,5 +126,6 @@ public class User {
 		return usuarios;
 		
 	}
+
 }
 

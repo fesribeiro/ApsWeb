@@ -86,7 +86,8 @@
 								<f:facet name="header">Ações</f:facet>
 								<h:commandButton value="Alterar" action="#{veiculo.alterarVeiculo(veiculoNaoAlugado.id)}" class="btn btn-warning"/>
 								&nbsp;
-								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o veiculo #{veiculoNaoAlugado.nome}')" action="#{veiculo.removerVeiculo(veiculoNaoAlugado.id)}" class="btn btn-danger"/>				
+								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o veiculo #{veiculoNaoAlugado.nome}')" 
+								action="#{veiculo.removerVeiculo(veiculoNaoAlugado.id)}" class="btn btn-danger"/>				
 							</h:column>
 					</h:dataTable>
 			</h:form>

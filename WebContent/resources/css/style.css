@@ -9,9 +9,14 @@ body {
 	padding: 15px;
 }
 
-.data-veiculos{
-	padding: 15px
+.data-clientes{
+	background-color: white;
+	border-radius: 15px;
+	box-shadow: 0 5px 20px black;
+	padding: 15px;
 }
+
+
 
 .user-helper{
 	opacity: 0.5;

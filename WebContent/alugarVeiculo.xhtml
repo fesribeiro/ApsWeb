@@ -44,7 +44,7 @@
 						<h:outputLabel clas="form-control" for="usuario" value="Selecione o usuario" />
 							<h:selectOneMenu  value="#{user.id}" id="usuario" class="form-control">
 								<f:selectItems 
-								value="#{user.usersList()}" 
+								value="#{user.usersNameList()}" 
 								var="user" itemValue="#{user.id}"  
 								itemLabel="#{user.nome}" 
 								/>						
