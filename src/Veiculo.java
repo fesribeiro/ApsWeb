@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 public class Veiculo {
 	int id;
+	String ano;
 	String nomeUsuarioCarro;
 	String fabricante;
 	String nome;
@@ -21,6 +22,14 @@ public class Veiculo {
 	ArrayList veiculosNaoAlugados;
 	private Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 	Connection conn;
+	
+	public String getAno() {
+		return ano;
+	}
+	
+	public void setAno(String ano) {
+		this.ano = ano;
+	}
 	
 	public int getId() {
 		return id;
@@ -87,6 +96,7 @@ public class Veiculo {
 				veiculo.setNome(result.getString("nome"));
 				veiculo.setMarca(result.getString("marca"));
 				veiculo.setCor(result.getString("cor"));
+				veiculo.setAno(result.getString("ano"));
 				veiculo.setNomeUsuarioCarro(result.getString("nomeCliente"));					
 				veiculos.add(veiculo);
 			}
@@ -109,7 +119,8 @@ public class Veiculo {
 				veiculo.setId(result.getInt("id"));
 				veiculo.setNome(result.getString("nome"));
 				veiculo.setMarca(result.getString("marca"));
-				veiculo.setCor(result.getString("cor"));			
+				veiculo.setCor(result.getString("cor"));
+				veiculo.setAno(result.getString("ano"));
 				veiculosNaoAlugados.add(veiculo);
 			}
 			conn.close();
@@ -125,6 +136,7 @@ public class Veiculo {
 			conn = getDb();
 			PreparedStatement stmt = conn.prepareStatement("UPDATE veiculos SET alugado_id = null where id = " + id);
 			stmt.executeUpdate();
+			conn.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -143,6 +155,7 @@ public class Veiculo {
 			veiculo.setNome(result.getString("nome"));
 			veiculo.setMarca(result.getString("marca"));
 			veiculo.setCor(result.getString("cor"));
+			veiculo.setAno(result.getString("ano"));
 			sessionMap.put("edit", veiculo);
 			conn.close();
 		} catch (Exception e) {
@@ -153,15 +166,43 @@ public class Veiculo {
 		
 	}
 	
+	public String alterarVeiculo(int id)
+	{
+		Veiculo veiculo = null;
+		try {
+			conn = getDb();
+			Statement stmt = getDb().createStatement();
+			ResultSet result = stmt.executeQuery("select * from veiculos where id = " + id);
+			result.next();
+			veiculo = new Veiculo();
+			veiculo.setId(result.getInt("id"));
+			veiculo.setNome(result.getString("nome"));
+			veiculo.setMarca(result.getString("marca"));
+			veiculo.setCor(result.getString("cor"));
+			veiculo.setAno(result.getString("ano"));
+			sessionMap.put("edit", veiculo);
+			conn.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return "/editar-veiculo.xhtml?faces-redirect=true";
+		
+	}
+	
+	
+	
 	public String criarVeiculo()
 	{
 		try {
 			conn = getDb();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO veiculos (nome, cor, marca) VALUES (?,?,?)");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO veiculos (nome, cor, marca, ano) VALUES (?,?,?,?)");
 			stmt.setString(1, nome);
 			stmt.setString(2, marca);
 			stmt.setString(3, cor);
+			stmt.setString(4, ano);
 			stmt.executeUpdate();
+			conn.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -176,9 +217,30 @@ public class Veiculo {
 			conn = getDb();
 			PreparedStatement stmt = conn.prepareStatement("DELETE FROM veiculos where id = " + id);
 			stmt.executeUpdate();
+			conn.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		
+	}
+	
+	public String alterarDadosVeiculo(Veiculo edit)
+	{
+		try {
+			conn = getDb();
+			PreparedStatement stmt = conn.prepareStatement("UPDATE veiculos SET cor=?, marca=?, nome=?, ano=? where id=?");
+			stmt.setString(1, edit.cor);
+			stmt.setString(2, edit.marca);
+			stmt.setString(3, edit.nome);
+			stmt.setString(4, edit.ano);
+			stmt.setInt(5, edit.id);
+			stmt.executeUpdate();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return "index.xhtml?faces-redirect=true";
 		
 	}
 	
@@ -191,12 +253,12 @@ public class Veiculo {
 			stmt.setInt(1, user.id);
 			stmt.setInt(2, edit.id);
 			stmt.executeUpdate();
+			conn.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		
 		return "index.xhtml?faces-redirect=true";
-		
 		
 	}
 	

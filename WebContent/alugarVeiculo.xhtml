@@ -13,24 +13,30 @@
 
 <h:panelGroup layout="block" class="container">
 	<h:form>
-				<h:panelGroup layout="block" class="row">
+			<h:panelGroup layout="block" class="row">
 					<h:panelGroup layout="block" class="col-md-5">
 						<h:panelGroup layout="block" class="form-group">
 						<h:inputHidden value="#{edit.id}" />
 							<h:outputLabel clas="form-control" for="nome-veiculo" value="Nome" />
-							<h:inputText class="form-control" id="nome-veiculo" value="#{edit.nome}" />
+							<h:inputText class="form-control" id="nome-veiculo" disabled="true" value="#{edit.nome}" />
 						</h:panelGroup>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="col-md-5">
 						<h:panelGroup layout="block" class="form-group">
 							<h:outputLabel clas="form-control" for="marca-veiculo" value="Marca" />
-							<h:inputText class="form-control" id="marca-veiculo" value="#{edit.marca}" />
+							<h:inputText class="form-control" id="marca-veiculo" disabled="true" value="#{edit.marca}" />
 						</h:panelGroup>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="col-md-5">
 						<h:panelGroup layout="block" class="form-group">
 							<h:outputLabel clas="form-control" for="cor-veiculo" value="Cor" />
-							<h:inputText class="form-control" id="cor-veiculo" value="#{edit.cor}" />
+							<h:inputText class="form-control" id="cor-veiculo"  disabled="true" value="#{edit.cor}" />
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup layout="block" class="col-md-5">
+						<h:panelGroup layout="block" class="form-group">
+							<h:outputLabel clas="form-control" for="ano-veiculo" value="Ano" />
+							<h:inputText class="form-control" id="ano-veiculo" disabled="true" value="#{edit.ano}" />
 						</h:panelGroup>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="col-md-5">
@@ -46,10 +52,12 @@
 						</h:panelGroup>
 						<h:outputText  class="user-helper" value="Caso não encontre o usuário favor cadastrar"/>
 					</h:panelGroup>				
-					<h:panelGroup layout="block" class="col-md-5">
+			</h:panelGroup>
+				<h:panelGroup layout="block" class="col-md-5">
+					<h:panelGroup layout="block" class="form-group">
 						<h:commandButton value="Alugar" action="#{veiculo.alugarVeiculo(edit, user)}" class="btn btn-success"/>
 					</h:panelGroup>
-			</h:panelGroup>
+				</h:panelGroup>
 	</h:form>
 </h:panelGroup>
 </h:body>
