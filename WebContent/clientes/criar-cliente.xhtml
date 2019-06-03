@@ -10,52 +10,77 @@
 	<h:outputStylesheet name="/css/style.css" />
 </h:head>
 <h:body>
-<ui:composition template="/WEB-INF/template.xhtml">
-	<ui:define name="page">
-		<h:panelGroup layout="block" class="container">
-			<h:form>
-						<h:panelGroup layout="block" class="row">
-							<h:panelGroup layout="block" class="col-md-5">
-								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="nome-cliente" value="Nome" />
-									<h:inputText class="form-control" id="nome-cliente" value="#{user.nome}" />
-								</h:panelGroup>
+	<ui:composition template="/WEB-INF/template.xhtml">
+		<ui:define name="page">
+			<h:panelGroup layout="block" class="container">
+				<h:form>
+					<h:panelGroup layout="block" class="row">
+						<h:panelGroup layout="block" class="col-md-7">
+							<h:panelGroup layout="block" class="form-group">
+								<h:outputLabel clas="form-control" for="nome-cliente"
+									value="Nome" />
+								<h:inputText class="form-control" id="nome-cliente"
+									value="#{user.nome}" requiredMessage="Campo nome obrigatorio."
+									required="true">
+									<f:validateLength minimum="5" maximum="50" />
+								</h:inputText>
+								<h:message for="nome-cliente" class="text-danger" />
 							</h:panelGroup>
-							<h:panelGroup layout="block" class="col-md-5">
-								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="cpf-cliente" value="CPF" />
-									<h:inputText class="form-control" id="cpf-cliente" value="#{user.cpf}" />
-								</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="col-md-7">
+							<h:panelGroup layout="block" class="form-group">
+								<h:outputLabel clas="form-control" for="cpf-cliente" value="CPF" />
+								<h:inputText class="form-control" id="cpf-cliente"
+									value="#{user.cpf}" requiredMessage="Campo CPF obrigatorio."
+									required="true">
+									<f:validator validatorId="cpfValidator"/>
+								</h:inputText>
+								<h:message for="cpf-cliente" class="text-danger" />
 							</h:panelGroup>
-							<h:panelGroup layout="block" class="col-md-5">
-								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="cliente-telefone" value="Telefone" />
-									<h:inputText class="form-control" id="cliente-telefone" value="#{user.telefone}" />
-								</h:panelGroup>
-							</h:panelGroup>		
-							<h:panelGroup layout="block" class="col-md-5">
-								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="cliente-endereco" value="Endereco" />
-									<h:inputText class="form-control" id="cliente-endereco" value="#{user.endereco}" />
-								</h:panelGroup>
-							</h:panelGroup>	
-							<h:panelGroup layout="block" class="col-md-5">
-								<h:panelGroup layout="block" class="form-group">
-									<h:outputLabel clas="form-control" for="cliente-endereco" value="Gênero" />
-									<h:selectOneMenu class="form-control" value="#{user.sexo}">
-										<f:selectItem  itemValue="Masculino" />
-										<f:selectItem  itemValue="Feminino" />
-									</h:selectOneMenu>
-								</h:panelGroup>
-							</h:panelGroup>	
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="col-md-7">
+							<h:panelGroup layout="block" class="form-group">
+								<h:outputLabel clas="form-control" for="cliente-telefone"
+									value="Telefone" />
+								<h:inputText class="form-control" id="cliente-telefone"
+									value="#{user.telefone}"
+									requiredMessage="Campo Telefone obrigatorio." required="true" />
+								<h:message for="cliente-telefone" class="text-danger" />
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="col-md-7">
+							<h:panelGroup layout="block" class="form-group">
+								<h:outputLabel clas="form-control" for="cliente-endereco"
+									value="Endereco" />
+								<h:inputText class="form-control" id="cliente-endereco"
+									value="#{user.endereco}"
+									requiredMessage="Campo Endereço  obrigatorio." required="true" />
+								<h:message for="cliente-endereco" class="text-danger" />
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="col-md-7">
+							<h:panelGroup layout="block" class="form-group">
+								<h:outputLabel clas="form-control" for="cliente-endereco"
+									value="Gênero" />
+								<h:selectOneMenu class="form-control" value="#{user.sexo}"
+									requiredMessage="Campo Genero obrigatorio." required="true">
+									<f:selectItem itemValue="Masculino" />
+									<f:selectItem itemValue="Feminino" />
+								</h:selectOneMenu>
+								<h:message for="cliente-endereco" class="text-danger" />
+							</h:panelGroup>
+						</h:panelGroup>
 					</h:panelGroup>
-				<h:panelGroup layout="block" class="col-md-5">
-					<h:commandButton value="Criar" action="#{user.criarUsuario()}" class="btn btn-success"/>
-				</h:panelGroup>
-			</h:form>
-		</h:panelGroup>
-	</ui:define>
-</ui:composition>
+					<h:panelGroup layout="block" class="col-md-5">
+						<h:panelGroup layout="block" class="form-group">
+							<h:commandButton value="Cadastrar"
+								action="#{user.criarUsuario()}" class="btn btn-success" />
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:form>
+			</h:panelGroup>
+		</ui:define>
+	</ui:composition>
 
 </h:body>
 </html>

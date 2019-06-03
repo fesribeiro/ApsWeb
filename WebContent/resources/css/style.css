@@ -1,17 +1,27 @@
 body {
-	background-color: #bbbbbbe0; 
-	background-image: url(/ApsWeb/resources/images/imageAps.jpg);
-	background-repeat: no-repeat;
+ 	background-image: linear-gradient(to right, black , white);
 }
 
-h1 {
-	color:white;
+#name-company{
+	font: Roboto;
+	font-weight: bold;
 }
 
-label{
-	color:white;
+h1, label{
+	color: white;
 }
 
+#company-input{
+	font: Roboto,
+	font-weight: bold;
+	color: black;
+	font-size: 100px;
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+	margin-right: 40px;
+	
+}
 .table-veiculos {
 	background-color: white;
 	border-radius: 15px;

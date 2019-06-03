@@ -13,46 +13,52 @@
 
 <ui:composition template="/WEB-INF/template.xhtml">
 	<ui:define name="page">
-		
-<h:panelGroup layout="block" class="container">
-	<h:form>
-			<h:panelGroup layout="block" class="row">
-					<h:panelGroup layout="block" class="col-md-5">
-						<h:panelGroup layout="block" class="form-group">
-							<h:outputLabel clas="form-control" for="nome-veiculo" value="Nome" />
-							<h:inputText class="form-control" id="nome-veiculo" value="#{veiculo.nome}" />
-						</h:panelGroup>
+			<h:panelGroup layout="block" class="container">
+				<h:form>
+					<h:panelGroup layout="block" class="row">
+							<h:panelGroup layout="block" class="col-md-7">
+								<h:panelGroup layout="block" class="form-group">
+									<h:outputLabel clas="form-control" for="nome-veiculo" value="Nome" />
+									<h:inputText class="form-control" id="nome-veiculo" value="#{veiculo.nome}" required="true" requiredMessage="Campo nome Obrigatório." />
+									<h:message for="nome-veiculo" class="text-danger"/>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block" class="col-md-7">
+								<h:panelGroup layout="block" class="form-group">
+									<h:outputLabel clas="form-control" for="marca-veiculo" value="Marca" />
+									<h:inputText class="form-control" id="marca-veiculo" value="#{veiculo.marca}" required="true" requiredMessage="Campo Marca Obrigatório."/>
+									<h:message for="marca-veiculo" class="text-danger"/>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup layout="block" class="col-md-7">
+								<h:panelGroup layout="block" class="form-group">
+									<h:outputLabel clas="form-control" for="cor-veiculo" value="Cor" />
+									<h:inputText class="form-control" id="cor-veiculo" value="#{veiculo.cor}" required="true" requiredMessage="Campo Cor Obrigatório."/>
+									<h:message for="cor-veiculo" class="text-danger"/>
+								</h:panelGroup>
+							</h:panelGroup>		
+							<h:panelGroup layout="block" class="col-md-7">
+								<h:panelGroup layout="block" class="form-group">
+									<h:outputLabel clas="form-control" for="ano-veiculo" value="Ano" />
+									<h:inputText class="form-control" id="ano-veiculo" value="#{veiculo.ano}" required="true" requiredMessage="Campo Ano Obrigatório."/>
+									<h:message for="ano-veiculo" class="text-danger"/>
+								</h:panelGroup>
+							</h:panelGroup>		
+							<h:panelGroup layout="block" class="col-md-7">
+								<h:panelGroup layout="block" class="form-group">
+									<h:outputLabel clas="form-control" for="preco-veiculo" value="Preco" />
+									<h:inputText class="form-control" id="preco-veiculo" value="#{veiculo.preco}" required="true" requiredMessage="Campo Preço Obrigatório."/>
+									<h:message for="preco-veiculo" class="text-danger"/>
+								</h:panelGroup>
+							</h:panelGroup>
 					</h:panelGroup>
 					<h:panelGroup layout="block" class="col-md-5">
-						<h:panelGroup layout="block" class="form-group">
-							<h:outputLabel clas="form-control" for="marca-veiculo" value="Marca" />
-							<h:inputText class="form-control" id="marca-veiculo" value="#{veiculo.marca}" />
-						</h:panelGroup>
+							<h:panelGroup layout="block" class="form-group">
+								<h:commandButton value="Cadastrar" action="#{veiculo.criarVeiculo()}" class="btn btn-success"/>
+							</h:panelGroup>
 					</h:panelGroup>
-					<h:panelGroup layout="block" class="col-md-5">
-						<h:panelGroup layout="block" class="form-group">
-							<h:outputLabel clas="form-control" for="cor-veiculo" value="Cor" />
-							<h:inputText class="form-control" id="cor-veiculo" value="#{veiculo.cor}" />
-						</h:panelGroup>
-					</h:panelGroup>		
-					<h:panelGroup layout="block" class="col-md-5">
-						<h:panelGroup layout="block" class="form-group">
-							<h:outputLabel clas="form-control" for="ano-veiculo" value="Ano" />
-							<h:inputText class="form-control" id="ano-veiculo" value="#{veiculo.ano}" />
-						</h:panelGroup>
-					</h:panelGroup>		
-					<h:panelGroup layout="block" class="col-md-5">
-						<h:panelGroup layout="block" class="form-group">
-							<h:outputLabel clas="form-control" for="preco-veiculo" value="Preco" />
-							<h:inputText class="form-control" id="preco-veiculo" value="#{veiculo.preco}" />
-						</h:panelGroup>
-					</h:panelGroup>
+				</h:form>
 			</h:panelGroup>
-			<h:panelGroup layout="block" class="col-md-5">
-						<h:commandButton value="Criar" action="#{veiculo.criarVeiculo()}" class="btn btn-success"/>
-			</h:panelGroup>
-	</h:form>
-</h:panelGroup>
 	</ui:define>
 </ui:composition>
 </h:body>

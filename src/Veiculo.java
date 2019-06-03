@@ -199,7 +199,7 @@ public class Veiculo {
 			System.out.println(e);
 		}
 		
-		return "/ApsWeb/faces/veiculos/editar-veiculo.xhtml?faces-redirect=true";
+		return "editar-veiculo.xhtml?faces-redirect=true";
 		
 	}
 	
@@ -207,6 +207,7 @@ public class Veiculo {
 	
 	public String criarVeiculo()
 	{
+		System.out.println("teste");
 		try {
 			conn = getDb();
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO veiculos (nome, cor, marca, ano, preco) VALUES (?,?,?,?,?)");
@@ -221,7 +222,7 @@ public class Veiculo {
 			System.out.println(e);
 		}
 		
-		return "veiculo.xhtml?faces-redirect=true";
+		return "veiculos.xhtml?faces-redirect=true";
 	}
 	
 	
