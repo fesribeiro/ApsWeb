@@ -45,7 +45,7 @@
 								&nbsp;
 								<h:commandButton value="Alterar" action="#{user.alterarUsuario(cliente.id)}" class="btn btn-warning"/>
 								&nbsp;				
-								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o cliente #{cliente.nome}')" 
+								<h:commandButton value="Remover" onclick="return confirm('Deseja realmente remover o cliente = #{cliente.nome} \nOBS: IRÁ APAGAR TODOS OS VEICULOS JÁ COMPRADOS!')" 
 								action="#{user.removerUsuario(cliente.id)}" class="btn btn-danger"/>
 							</h:column>
 				</h:dataTable>

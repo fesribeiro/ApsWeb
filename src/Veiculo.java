@@ -12,6 +12,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 public class Veiculo {
 	int id;
+	int quantidade;
+	float totalGanho;
 	String ano;
 	String preco;
 	String nomeUsuarioCarro;
@@ -23,6 +25,22 @@ public class Veiculo {
 	ArrayList veiculosNaoAlugados;
 	private Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 	Connection conn;
+	
+	public void setTotalGanho(float totalGanho) {
+		this.totalGanho = totalGanho;
+	}
+	
+	public float getTotalGanho() {
+		return totalGanho;
+	}
+	
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
 	
 	public String getPreco() {
 		return preco;
@@ -277,5 +295,28 @@ public class Veiculo {
 		return "veiculos.xhtml?faces-redirect=true";
 		
 	}
+	
+	public ArrayList vendasRealizadas(){
+		try {
+			veiculos = new ArrayList();
+			conn = getDb();		
+			Statement stmt = getDb().createStatement();
+			ResultSet result = stmt.executeQuery("SELECT nome, count(nome) as quantidade,  count(nome) * preco as Total from veiculos where alugado_id > 0 group by nome;");
+			while (result.next()){
+				Veiculo veiculo = new Veiculo();
+				veiculo.setNome(result.getString("nome"));
+				veiculo.setQuantidade(result.getInt("quantidade"));					
+				veiculo.setTotalGanho(result.getFloat("Total"));
+				veiculos.add(veiculo);
+			}
+			conn.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return veiculos;
+		
+	}
+
+	
 	
 }
