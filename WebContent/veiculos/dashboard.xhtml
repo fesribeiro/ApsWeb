@@ -14,13 +14,13 @@
 		<ui:define name="page">
 				<h:panelGroup layout="block" class="container">
 						<h:dataTable  binding="#{dashboard}" value="#{veiculo.vendasRealizadas()}" var="dash"
-								class="table data-clientes">
+								class="table table-veiculos">
 									<h:column>
-										<f:facet name="header">Nome</f:facet>
+										<f:facet name="header">Nome Veiculo</f:facet>
 										<h:outputText value="#{dash.nome}" />
 									</h:column>
 									<h:column>
-										<f:facet name="header">Quantidade</f:facet>
+										<f:facet name="header">Quantidade Vendido</f:facet>
 										<h:outputText value="#{dash.quantidade}" />
 									</h:column>
 									<h:column>

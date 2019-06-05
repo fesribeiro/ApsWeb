@@ -59,13 +59,18 @@
 							/>						
 						</h:selectOneMenu>
 					</h:panelGroup>
-					<h:outputText  class="text-danger" value="Caso não encontre o usuário favor cadastrar"/>
-					<h:outputLink value=""/>
+					<h:link 
+					class="text-danger"
+					style="background-color:white;"
+					value="Caso não encontre o usuário clique aqui para cadastrar" 
+					outcome="/faces/clientes/criar-cliente.xhtml"/>
+					
+					
 				</h:panelGroup>				
 		</h:panelGroup>
 			<h:panelGroup layout="block" class="col-md-5">
 				<h:panelGroup layout="block" class="form-group">
-					<h:commandButton value="Comprar" action="#{veiculo.comprarVeiculo(edit, user)}" class="btn btn-success"/>
+					<h:commandButton value="Realizar compra" action="#{veiculo.comprarVeiculo(edit, user)}" class="btn btn-success"/>
 				</h:panelGroup>
 			</h:panelGroup>
 	</h:form>

@@ -1,5 +1,6 @@
 body {
- 	background-image: linear-gradient(to right, black , white);
+ 	/*background-image: linear-gradient(to right, black , white);*/
+ 	background-color:gray;
 }
 
 #name-company{
@@ -29,6 +30,17 @@ h1, label{
 	padding: 15px;
 }
 
+.table-veiculos th{
+ 	background-color: black;
+ 	color:white;	
+}
+
+
+.table-veiculos tr:hover{
+	opacity: 0.8;
+
+}
+
 .data-clientes{
 	background-color: white;
 	border-radius: 15px;
@@ -36,6 +48,16 @@ h1, label{
 	padding: 15px;
 }
 
+.data-clientes tr:hover{
+	opacity: 0.8;
+	
+}
+
+.data-clientes th{
+ 	background-color: black;
+ 	color:white;	
+	
+}
 
 
 .user-helper{

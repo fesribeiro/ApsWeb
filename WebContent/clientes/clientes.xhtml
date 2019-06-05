@@ -19,7 +19,7 @@
 		<h1>Clientes</h1>
 			<h:form>
 				<h:dataTable  binding="#{clientes}" value="#{user.usersList()}" var="cliente"
-						class="table data-clientes">
+						class="table table-responsive data-clientes">
 							<h:column>
 								<f:facet name="header">ID</f:facet>
 								<h:outputText value="#{cliente.id}" />

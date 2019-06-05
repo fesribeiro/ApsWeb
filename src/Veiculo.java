@@ -301,7 +301,7 @@ public class Veiculo {
 			veiculos = new ArrayList();
 			conn = getDb();		
 			Statement stmt = getDb().createStatement();
-			ResultSet result = stmt.executeQuery("SELECT nome, count(nome) as quantidade,  count(nome) * preco as Total from veiculos where alugado_id > 0 group by nome;");
+			ResultSet result = stmt.executeQuery("SELECT nome, COUNT(nome) as quantidade, SUM(preco) as Total FROM veiculos WHERE alugado_id IS NOT NULL  GROUP BY nome order by Total desc;");
 			while (result.next()){
 				Veiculo veiculo = new Veiculo();
 				veiculo.setNome(result.getString("nome"));
