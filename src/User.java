@@ -73,7 +73,7 @@ public class User {
 	public Connection getDb() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/revendaveiculos", "root", "f0rt@123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/revendaveiculos", "root", "");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
